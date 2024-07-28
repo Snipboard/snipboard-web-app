@@ -3,6 +3,9 @@ module.exports = {
   content: ["./public/**/*.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      boxShadow: {
+        'outline-blue': '0 0 0 3px rgba(37, 99, 235, 0.6)', // Custom shadow
+      },
       fontFamily: {
         leagueSpartan: ["leagueSpartan", "sans-serif"],
       },
