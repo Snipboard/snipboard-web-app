@@ -1,20 +1,58 @@
-/* features.css */
-.feature-button {
-    @apply flex items-center justify-center bg-lightBlue text-darkBlue p-2 rounded;
+.features-container {
+    display: flex;
+    flex-direction: column;
 }
 
-.feature-button:hover {
-    @apply bg-blue;
+.features-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-bottom: 2rem;
 }
 
-.feature-button:focus {
-    @apply outline-none ring-2 outline-blue;
+.features-media {
+    display: flex;
+    justify-content: center;
 }
 
-.col-span-2 {
-    grid-column: span 2 / span 2;
+@media (min-width: 768px) {
+    .features-container {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .features-list {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+        flex: 1 1 60%;
+        max-width: 60%;
+        margin-bottom: 0;
+    }
+
+    .features-media {
+        flex: 1 1 35%;
+        max-width: 35%;
+        padding-left: 2rem;
+    }
 }
 
-.row-span-2 {
-    grid-row: span 2 / span 2;
+@media (min-width: 1024px) {
+    .features-container {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .features-list {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+        flex: 1 1 55%;
+        max-width: 55%;
+        margin-bottom: 0;
+    }
+
+    .features-media {
+        flex: 1 1 40%;
+        max-width: 40%;
+        padding-left: 4rem;
+    }
 }

@@ -19,26 +19,35 @@ const Features = () => {
                 {/* Title */}
                 <h2 className="text-5xl font-bold mt-3 text-center my-16 text-lightBlue">Features</h2>
 
-                <div className="flex flex-row p-4">
-                    <div className="w-1/2">
-                        <div className="grid grid-cols-2 gap-8">
-                            {features.map((feature) => (
-                                <div key={feature.id} className="flex flex-col items-start text-left p-4">
-                                    <svg className={`w-8 h-8 mb-2 ${feature.iconColor}`} fill="currentColor" viewBox="0 0 20 20">
-                                        <path d={feature.icon} />
-                                    </svg>
-                                    <h3 className="text-lg font-bold">{feature.title}</h3>
-                                    <p className="text-sm mt-2">{feature.description}</p>
-                                </div>
-                            ))}
+                <div className="features-container">
+                    <div className="features-list grid grid-cols-2 gap-8">
+                        {features.map((feature) => (
+                            <div key={feature.id} className="feature-item flex flex-col items-start text-left p-4">
+                                <svg className={`w-8 h-8 mb-2 ${feature.iconColor}`} fill="currentColor" viewBox="0 0 20 20">
+                                    <path d={feature.icon} />
+                                </svg>
+                                <h3 className="text-lg font-bold">{feature.title}</h3>
+                                <p className="text-sm mt-2">{feature.description}</p>
+                            </div>
+                        ))}
+                    </div>
+                    <div className="features-media">
+                        <div className="h-full rounded flex items-center justify-center">
+                            <img src="images/PlaceholderFeaturesMedia.png" alt="Feature Placeholder" className="w-full" />
                         </div>
                     </div>
-                    <div className="w-1/2 pl-4">
-                        {/* Placeholder for media content */}
-                        <div className="bg-gray-700 h-full rounded flex items-center justify-center p-4">
-                            <p className="text-white">Media Content Here</p>
-                        </div>
-                    </div>
+                </div>
+
+                {/* Buttons */}
+                <div className="flex justify-center mt-8 space-x-4">
+                    <button className="bg-lightBlue text-white py-2 px-4 rounded">Web App</button>
+                    <button className="py-2 px-4 rounded flex items-center">
+                        <img src="https://storage.googleapis.com/web-dev-uploads/image/WlD8wC6g8khYWPJUsQceQkhXSlv1/HRs9MPufa1J1h5glNhut.png" alt="Chrome Logo" className="w-56 h-full mr-2" />
+                    </button>
+                    <button className="bg-[#007ACC] text-white py-2 px-4 rounded flex items-center">
+                        <img src="images/vscode-logo.png" alt="VS Code Logo" className="w-5 h-5 mr-2" />
+                        VS Code Extension
+                    </button>
                 </div>
             </div>
         </div>
