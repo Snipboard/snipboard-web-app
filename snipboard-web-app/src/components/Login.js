@@ -101,7 +101,7 @@ const Login = () => {
           <p className="text-lg">Stay positive and keep coding!</p>
         </div>
         <div className="text-lightBlue">
-          <p className="text-2xl">Your Logo</p>
+            <img src="images/SnipboardTitle.png" alt="Snipboard Title" />
         </div>
       </div>
     </div>

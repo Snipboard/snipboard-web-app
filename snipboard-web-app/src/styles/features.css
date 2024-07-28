@@ -1,0 +1,37 @@
+/* features.css */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1rem;
+}
+
+.feature-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 150px;
+    width: 150px;
+    background-color: #4A90E2;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.feature-button.col-span-2 {
+    grid-column: span 2;
+}
+
+.feature-button.row-span-2 {
+    grid-row: span 2;
+}
+
+.feature-button:hover {
+    background-color: #357ABD;
+}
+
+.feature-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.6);
+}
