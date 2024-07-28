@@ -10,7 +10,7 @@ return (
             <Navbar />
         </div>
 
-        <div id="home" className="flex flex-col items-center justify-start mt-24 min-h-screen">
+        <div id="home" className="flex flex-col items-center justify-start mt-12 min-h-screen">
             <div className="flex flex-col items-center text-center">
                 <img src="images/SnipboardTitle.png" alt="Snipboard Title" className="mb-12" />
                 <p className="text-3xl font-semibold text-lightBlue mb-4">
