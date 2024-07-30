@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { auth } from '../firebase';
-import { FaHome, FaChartBar, FaCog, FaQuestionCircle, FaSignOutAlt, FaCut } from 'react-icons/fa';
+import DashboardSidebar from './DashboardSidebar';
+import RecentSnipsCard from './RecentSnipsCard';
+import SearchShortcutCard from './SearchShortcutCard';
+import TipsCard from './TipsCard';
+import BoardsCard from './BoardsCard';
 
 const Dashboard = () => {
   const location = useLocation();
@@ -32,7 +36,17 @@ const Dashboard = () => {
   const renderContent = () => {
     switch (activeButton) {
       case 'home':
-        return <p>Home Content</p>;
+        return (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="md:col-span-2">
+              <RecentSnipsCard />
+            </div>
+            <div className="md:col-span-1 flex flex-col gap-y-4 justify-between">
+              <SearchShortcutCard />
+              <BoardsCard />
+            </div>
+          </div>
+        );
       case 'snips':
         return <p>Snips Content</p>;
       case 'settings':
@@ -46,69 +60,24 @@ const Dashboard = () => {
 
   return (
     <div className="flex min-h-screen font-leagueSpartan bg-darkBlue">
-      {/* Sidebar */}
-      <div className="bg-darkBlue text-white w-32 flex flex-col items-center py-8 justify-between">
-        <div>
-          <div className="mb-16 ml-16">
-            {/* Placeholder for logo */}
-            <img src="images/SnipboardIconCropped.png" alt="Logo" className="w-36 h-max p-2" />
-          </div>
-          <div className="flex flex-col items-center space-y-5">
-            <div className="mb-10">
-              <div className="flex w-36 pb-4 pt-4 h-max bg-lightBlue text-darkBlue rounded-xl transition-all duration-300">
-                <span className="text-l text-center font-bold pl-4 mr-2">Dashboard Menu</span>
-              </div>
-            </div>
-            <div
-              className={`flex items-center justify-center pl-16 w-32 h-12 bg-lightBlue text-darkBlue rounded-xl cursor-pointer hover:bg-blue transition-all duration-300 ${activeButton === 'home' ? 'mr-16' : 'mr-32'}`}
-              data-tooltip="Home"
-              onClick={() => handleIconClick('home')}
-            >
-              <FaHome className="text-2xl" />
-            </div>
-            <div
-              className={`flex items-center justify-center pl-16 w-32 h-12 bg-lightBlue text-darkBlue rounded-xl cursor-pointer hover:bg-blue transition-all duration-300 ${activeButton === 'snips' ? 'mr-16' : 'mr-32'}`}
-              data-tooltip="Snips"
-              onClick={() => handleIconClick('snips')}
-            >
-              <FaCut className="text-2xl" />
-            </div>
-            <div
-              className={`flex items-center justify-center pl-16 w-32 h-12 bg-lightBlue text-darkBlue rounded-xl cursor-pointer hover:bg-blue transition-all duration-300 ${activeButton === 'help' ? 'mr-16' : 'mr-32'}`}
-              data-tooltip="Help"
-              onClick={() => handleIconClick('help')}
-            >
-              <FaQuestionCircle className="text-2xl" />
-            </div>
-            <div
-              className={`flex items-center justify-center pl-16 w-32 h-12 bg-lightBlue text-darkBlue rounded-xl cursor-pointer hover:bg-blue transition-all duration-300 ${activeButton === 'settings' ? 'mr-16' : 'mr-32'}`}
-              data-tooltip="Settings"
-              onClick={() => handleIconClick('settings')}
-            >
-              <FaCog className="text-2xl" />
-            </div>
-          </div>
-        </div>
-        <div className="mt-8">
-          <button onClick={handleSignOut} className="flex w-36 pb-4 pt-4 h-max bg-lightBlue text-darkBlue rounded-xl cursor-pointer hover:bg-blue transition-all duration-300">
-            <span className="mr-2 font-bold text-end pl-8">Sign Out</span>
-            <FaSignOutAlt className="text-2xl text-darkBlue" />
-          </button>
-        </div>
-      </div>
+      <DashboardSidebar
+        activeButton={activeButton}
+        handleIconClick={handleIconClick}
+        handleSignOut={handleSignOut}
+      />
 
       {/* Divider */}
-      <div className="w-1 bg-gray-500 opacity-30 ml-8"></div>
+      <div className="w-1 bg-gray-900 opacity-30 ml-8"></div>
 
       {/* Main Content */}
-      <div className="flex-1 bg-darkBlue text-white p-8">
+      <div className="flex-1 bg-gray-700 text-white p-8">
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-4xl font-bold text-lightBlue">My Dashboard</h1>
         </div>
         {email && <p className="text-xl mb-8">Welcome, {email}</p>}
         <div className="grid grid-cols-1 gap-8">
-          <div className="bg-blue p-4 rounded">
-            <h2 className="text-2xl font-bold mb-4">Content Section</h2>
+          <div className="bg-transparent pt-2 rounded-xl">
+            <h2 className="text-2xl text-lightBlue font-bold mb-4"></h2>
             {renderContent()}
           </div>
         </div>
