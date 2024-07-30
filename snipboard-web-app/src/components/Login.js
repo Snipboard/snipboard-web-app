@@ -33,7 +33,7 @@ const Login = () => {
   return (
     <div className="relative min-h-screen flex font-leagueSpartan">
       <div className="absolute inset-0 bg-darkBlue"></div>
-      <div className="absolute inset-0 w-full h-full bg-slate-700" style={{ clipPath: 'polygon(0 0, 40% 0, 60% 100%, 0 100%)' }}></div>
+      <div className="absolute inset-0 w-full h-full bg-blue" style={{ clipPath: 'polygon(0 0, 40% 0, 60% 100%, 0 100%)' }}></div>
       <div className="relative flex-1 flex items-center justify-center">
         <div className="bg-darkBlue p-8 rounded-lg shadow-md w-full max-w-md border-lightBlue">
           <h2 className="text-2xl font-bold mb-6 text-center text-lightBlue">Login</h2>
