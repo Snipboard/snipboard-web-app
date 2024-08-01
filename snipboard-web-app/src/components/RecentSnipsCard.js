@@ -1,30 +1,46 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { collection, getDocs, doc } from 'firebase/firestore';
+import { db } from '../firebase.js'; // Adjust the path as needed
 import Snip from './Snip';
 
 const RecentSnipsCard = () => {
-  // Placeholder data for recent snips
-  const recentSnips = [
-    { id: 1, title: 'Creating a react component', description: 'Creating a react component using functional component syntax.', codeSnippet: 'const App = () => { return <div>Hello, world!</div>; };', language: 'javascript' },
-    { id: 2, title: 'Triple nested for loop example', description: 'A triple nested for loop in JavaScript.', codeSnippet: 'for (let i = 0; i < 3; i++) { for (let j = 0; j < 3; j++) { for (let k = 0; k < 3; k++) { console.log(`i: ${i}, j: ${j}, k: ${k}`); } } }', language: 'javascript' },
-    { id: 3, title: 'Handling form submissions', description: 'Handling form submissions in React using controlled components.', codeSnippet: 'const [formData, setFormData] = useState({ email: "", password: "" });', language: 'javascript' },
-];
+    const [snips, setSnips] = useState([]); // Define state for snips
 
-  return (
-    <div className="bg-darkBlue text-lightBlue p-4 rounded-xl shadow-l h-max">
-      <h2 className="text-2xl font-bold mb-4">Recent Snips</h2>
-      <div className="pt-4 space-y-4">
-        {recentSnips.map(snip => (
-          <Snip
-            key={snip.id}
-            language={snip.language}
-            code={snip.codeSnippet}
-            title={snip.title}
-            description={snip.description}
-          />
-        ))}
-      </div>
-    </div>
-  );
+    useEffect(() => {
+        fetchSnips();
+    }, []);
+
+    const fetchSnips = async () => {
+        try {
+            const userDoc = doc(db, 'users', '0K0bpBzcoQttJEpg2cgI'); // Get the document reference
+            const snipsCollection = collection(userDoc, 'snips'); // Get the subcollection reference
+            const snipsSnapshot = await getDocs(snipsCollection);
+            const snipsList = snipsSnapshot.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data()
+            }));
+            setSnips(snipsList);
+        } catch (error) {
+            console.error('Error fetching snips:', error);
+        }
+    };
+
+    return (
+        <div className="bg-darkBlue text-lightBlue p-4 rounded-xl shadow-l h-max">
+            <h2 className="text-2xl font-bold mb-4">Recent Snips</h2>
+            <div className="pt-4 space-y-4">
+                {snips.map(snip => (
+                    <Snip
+                        key={snip.id}
+                        language={snip.languages}
+                        code={snip.content}
+                        title={snip.title}
+                        description={snip.description}
+                    />
+                ))}
+            </div>
+        </div>
+    );
 };
 
 export default RecentSnipsCard;

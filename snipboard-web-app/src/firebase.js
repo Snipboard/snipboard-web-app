@@ -1,6 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
 import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore'; // Import Firestore
 
 const firebaseConfig = {
   apiKey: "AIzaSyDxaDRNegP7ZBMqUmhMLf9JWbSjBhmwduc",
@@ -16,6 +17,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
+const db = getFirestore(app); // Initialize Firestore
 
 // Google Sign-In
 const googleProvider = new GoogleAuthProvider();
@@ -23,4 +25,4 @@ googleProvider.setCustomParameters({ prompt: 'select_account' });
 
 const signInWithGoogle = () => signInWithPopup(auth, googleProvider);
 
-export { auth, signInWithGoogle };
+export { auth, signInWithGoogle, db }; // Export Firestore

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { auth } from '../firebase';
+import { useNavigate } from 'react-router-dom';
+import { getAuth } from 'firebase/auth';
 import DashboardSidebar from './DashboardSidebar';
 import RecentSnipsCard from './RecentSnipsCard';
 import SearchShortcutCard from './SearchShortcutCard';
@@ -8,18 +8,13 @@ import TipsCard from './TipsCard';
 import BoardsCard from './BoardsCard';
 
 const Dashboard = () => {
-  const location = useLocation();
   const navigate = useNavigate();
-  const email = location.state?.email;
-
+  const [email, setEmail] = useState('');
   const [activeButton, setActiveButton] = useState('home');
-
-  useEffect(() => {
-    setActiveButton('home');
-  }, []);
 
   const handleSignOut = async () => {
     try {
+      const auth = getAuth(); // Initialize auth here
       await auth.signOut();
       navigate('/');
     } catch (err) {
